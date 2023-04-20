@@ -2,6 +2,7 @@ import cors from "cors";
 import express, { Request, Response, NextFunction } from "express";
 import { createStripeCheckoutSession } from "./checkout";
 import { createPaymentIntent } from "./payments";
+import { handleStripeWebhook } from "./webhooks";
 export const app = express();
 
 // Allows cross origin requests
@@ -13,6 +14,9 @@ app.use(
     verify: (req, res, buffer) => (req["rawBody"] = buffer),
   })
 );
+
+//Handle Webhook
+app.post("hooks", runAsync(handleStripeWebhook))
 
 /**
  * Catch async errors when awaiting promises
@@ -43,3 +47,4 @@ app.post(
     res.send(await createPaymentIntent(body.amount));
   })
 );
+

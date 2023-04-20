@@ -8,6 +8,7 @@ const cors_1 = __importDefault(require("cors"));
 const express_1 = __importDefault(require("express"));
 const checkout_1 = require("./checkout");
 const payments_1 = require("./payments");
+const webhooks_1 = require("./webhooks");
 exports.app = (0, express_1.default)();
 // Allows cross origin requests
 exports.app.use((0, cors_1.default)({ origin: true }));
@@ -15,6 +16,8 @@ exports.app.use((0, cors_1.default)({ origin: true }));
 exports.app.use(express_1.default.json({
     verify: (req, res, buffer) => (req["rawBody"] = buffer),
 }));
+//Handle Webhook
+exports.app.post("hooks", runAsync(webhooks_1.handleStripeWebhook));
 /**
  * Catch async errors when awaiting promises
  */
