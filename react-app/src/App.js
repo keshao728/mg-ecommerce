@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-import { Checkout, CheckoutSuccess, CheckoutFail } from './Checkout';
-import Payments from './Payments';
-import Customers from './Customers';
-import Subscriptions from './Subscriptions';
+import { Checkout, CheckoutSuccess, CheckoutFail } from "./Checkout";
+import Payments from "./Payments";
+import Customers from "./Customers";
+import Subscriptions from "./Subscriptions";
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
               <Link to="/checkout">
                 <span aria-label="emoji" role="img">
                   🛒
-                </span>{' '}
+                </span>{" "}
                 Checkout
               </Link>
             </li>
@@ -28,7 +28,7 @@ function App() {
               <Link to="/payments">
                 <span aria-label="emoji" role="img">
                   💸
-                </span>{' '}
+                </span>{" "}
                 Payments
               </Link>
             </li>
@@ -36,7 +36,7 @@ function App() {
               <Link to="/customers">
                 <span aria-label="emoji" role="img">
                   🧑🏿‍🤝‍🧑🏻
-                </span>{' '}
+                </span>{" "}
                 Customers
               </Link>
             </li>
@@ -44,7 +44,7 @@ function App() {
               <Link to="/subscriptions">
                 <span aria-label="emoji" role="img">
                   🔄
-                </span>{' '}
+                </span>{" "}
                 Subscriptions
               </Link>
             </li>
@@ -52,7 +52,7 @@ function App() {
         </nav>
 
         <main>
-          <Switch>
+          <Routes>
             <Route path="/checkout">
               <Checkout />
             </Route>
@@ -74,7 +74,7 @@ function App() {
             <Route path="/">
               <Home />
             </Route>
-          </Switch>
+          </Routes>
         </main>
       </div>
     </Router>
