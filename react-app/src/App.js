@@ -53,27 +53,13 @@ function App() {
 
         <main>
           <Routes>
-            <Route path="/checkout">
-              <Checkout />
-            </Route>
-            <Route path="/payments">
-              <Payments />
-            </Route>
-            <Route path="/customers">
-              <Customers />
-            </Route>
-            <Route path="/subscriptions">
-              <Subscriptions />
-            </Route>
-            <Route path="/success">
-              <CheckoutSuccess />
-            </Route>
-            <Route path="/failed">
-              <CheckoutFail />
-            </Route>
-            <Route path="/">
-              <Home />
-            </Route>
+            <Route path="/" element={<Home />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/payments" element={<Payments />} />
+            <Route path="/customers" element={<Customers />} />
+            <Route path="/subscriptions" element={<Subscriptions />} />
+            <Route path="/success" element={<CheckoutSuccess />} />
+            <Route path="/failed" element={<CheckoutFail />} />
           </Routes>
         </main>
       </div>
