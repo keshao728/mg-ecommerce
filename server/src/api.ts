@@ -1,6 +1,7 @@
 import cors from "cors";
 import express, { Request, Response, NextFunction } from "express";
 import { createStripeCheckoutSession } from "./checkout";
+import { createPaymentIntent } from "./payments";
 export const app = express();
 
 // Allows cross origin requests
@@ -29,5 +30,16 @@ app.post(
   "/checkouts/",
   runAsync(async ({ body }: Request, res: Response) => {
     res.send(await createStripeCheckoutSession(body.line_items));
+  })
+);
+
+/**
+ * Payment Intents
+ */
+
+app.post(
+  "/payments",
+  runAsync(async ({ body }: Request, res: Response) => {
+    res.send(await createPaymentIntent(body.amount));
   })
 );

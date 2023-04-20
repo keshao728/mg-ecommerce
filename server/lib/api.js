@@ -7,6 +7,7 @@ exports.app = void 0;
 const cors_1 = __importDefault(require("cors"));
 const express_1 = __importDefault(require("express"));
 const checkout_1 = require("./checkout");
+const payments_1 = require("./payments");
 exports.app = (0, express_1.default)();
 // Allows cross origin requests
 exports.app.use((0, cors_1.default)({ origin: true }));
@@ -27,5 +28,11 @@ function runAsync(callback) {
  */
 exports.app.post("/checkouts/", runAsync(async ({ body }, res) => {
     res.send(await (0, checkout_1.createStripeCheckoutSession)(body.line_items));
+}));
+/**
+ * Payment Intents
+ */
+exports.app.post("/payments", runAsync(async ({ body }, res) => {
+    res.send(await (0, payments_1.createPaymentIntent)(body.amount));
 }));
 //# sourceMappingURL=api.js.map
